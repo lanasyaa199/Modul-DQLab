@@ -1,0 +1,74 @@
+# Produk DQLab Mart
+SELECT *
+FROM ms_produk
+WHERE harga >= 50000 AND harga <= 150000;
+
+# Thumb drive di DQLab Mart
+SELECT *
+FROM ms_produk
+WHERE nama_produk LIKE '%Flashdisk%'; 
+
+# Pelanggan Bergelar
+SELECT *
+FROM ms_pelanggan
+WHERE nama_pelanggan LIKE '%S.H%' OR nama_pelanggan LIKE '%Ir.%' OR nama_pelanggan LIKE '%Drs.%';
+
+# Mengurutkan Nama Pelanggan
+SELECT nama_pelanggan
+FROM ms_pelanggan
+ORDER BY nama_pelanggan;
+
+# Mengurutkan Nama Pelanggan Tanpa Gelar
+SELECT nama_pelanggan
+FROM ms_pelanggan
+ORDER BY REPLACE (nama_pelanggan, 'Ir. ', '') ASC;
+
+# Nama Pelanggan yang Paling Panjang
+SELECT nama_pelanggan
+FROM ms_pelanggan
+WHERE LENGTH (nama_pelanggan) IN 
+(SELECT MAX(LENGTH(nama_pelanggan)) FROM ms_pelanggan);
+
+# Nama Pelanggan yang Paling Panjang dengan Gelar
+SELECT nama_pelanggan 
+FROM ms_pelanggan 
+WHERE LENGTH(nama_pelanggan) IN 
+(SELECT MAX(LENGTH(nama_pelanggan)) FROM ms_pelanggan) or LENGTH(nama_pelanggan) IN 
+(SELECT MIN(LENGTH(nama_pelanggan)) FROM ms_pelanggan) 
+ORDER BY LENGTH(nama_pelanggan) DESC;
+
+# Kuantitas Produk yang Banyak Terjual
+SELECT tr_penjualan_detail.kode_produk, ms_produk.nama_produk, SUM(qty) as total_qty 
+FROM tr_penjualan_detail 
+INNER JOIN ms_produk USING(kode_produk) 
+GROUP BY kode_produk, nama_produk ORDER BY total_qty DESC 
+LIMIT 2;
+
+# Pelanggan Paling Tinggi Nilai Belanjanya
+SELECT tr_penjualan.kode_pelanggan, ms_pelanggan.nama_pelanggan, SUM(tr_penjualan_detail.qty*tr_penjualan_detail.harga_satuan) AS total_harga 
+FROM tr_penjualan_detail 
+INNER JOIN tr_penjualan USING(kode_transaksi) 
+INNER JOIN ms_pelanggan USING(kode_pelanggan) 
+GROUP BY kode_pelanggan, nama_pelanggan 
+ORDER BY total_harga DESC 
+LIMIT 1;
+
+# Pelanggan yang Belum Pernah Berbelanja
+SELECT ms_pelanggan.kode_pelanggan, ms_pelanggan.nama_pelanggan, ms_pelanggan.alamat 
+FROM ms_pelanggan 
+WHERE kode_pelanggan NOT IN 
+(SELECT kode_pelanggan FROM tr_penjualan) 
+ORDER BY kode_pelanggan, nama_pelanggan, alamat;
+
+# Transaksi Belanja dengan Daftar Belanja lebih dari 1
+SELECT tr_penjualan.kode_transaksi, tr_penjualan.kode_pelanggan, ms_pelanggan.nama_pelanggan, tr_penjualan.tanggal_transaksi, COUNT(tr_penjualan_detail.kode_produk) AS jumlah_detail 
+FROM tr_penjualan 
+JOIN ms_pelanggan ON tr_penjualan.kode_pelanggan = ms_pelanggan.kode_pelanggan 
+JOIN tr_penjualan_detail ON tr_penjualan.kode_transaksi = tr_penjualan_detail.kode_transaksi 
+GROUP BY tr_penjualan.kode_transaksi, tr_penjualan.kode_pelanggan, ms_pelanggan.nama_pelanggan, tr_penjualan.tanggal_transaksi 
+HAVING COUNT(tr_penjualan_detail.kode_produk) > 1;
+
+
+
+
+

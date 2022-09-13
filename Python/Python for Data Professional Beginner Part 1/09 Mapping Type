@@ -1,0 +1,3 @@
+person = {'Nama':'John Doe','Pekerjaan':'Programmer'}
+print(person['Nama'])
+print(person['Pekerjaan'])

@@ -1,5 +1,5 @@
 # Modul-DQLab
-Modul Python dan SQL
+### Modul Python dan SQL
 
 Repository ini akan berisi kode dari beberapa modul yang terdapat dalam platform belajar online seputar data yaitu DQLab. Saya mendapat kesempatan mengikuti pelatihan Kominfo yang bermitra dengan DQLab. Enjoy learning!
 

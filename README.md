@@ -6,6 +6,8 @@ Repository ini akan berisi kode dari beberapa modul yang terdapat dalam platform
 Modul Python yang tersedia pada repository ini:
 * Python for Data Professional Beginner Part 1-3
 * Data Quality with Python for Beginner
+* Data Manipulation with Pandas Part 1-2
+* Fundamental Data Visualization with Python
 
 Modul SQL yang tersedia pada repository ini:
 * Fundamental SQL Using SELECT Statement, INNER JOIN and UNION, FUNCTION and GROUP BY

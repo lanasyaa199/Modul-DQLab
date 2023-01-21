@@ -13,6 +13,7 @@ Modul Python yang tersedia pada repository ini:
 Modul SQL yang tersedia pada repository ini:
 * Fundamental SQL Using SELECT Statement, INNER JOIN and UNION, FUNCTION and GROUP BY
 * Data Engineer Challenge with SQL
+* Project Data Analysis for B2B Retail: Customer Analytics Report
 * Project Data Analysis for Retail: Sales Performance Report
 
 For more information : https://dqlab.id/

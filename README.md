@@ -11,8 +11,8 @@ Modul Python yang tersedia pada repository ini:
 * Fundamental Data Visualization with Python
 
 Modul SQL yang tersedia pada repository ini:
-* Fundamental SQL Using SELECT Statement, INNER JOIN and UNION, FUNCTION and GROUP BY
 * Data Engineer Challenge with SQL
+* Fundamental SQL Using SELECT Statement, INNER JOIN and UNION, FUNCTION and GROUP BY
 * Project Data Analysis for B2B Retail: Customer Analytics Report
 * Project Data Analysis for Retail: Sales Performance Report
 

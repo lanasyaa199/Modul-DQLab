@@ -7,6 +7,7 @@ Modul Python yang tersedia pada repository ini:
 * Python for Data Professional Beginner Part 1-3
 * Data Quality with Python for Beginner
 * Data Manipulation with Pandas Part 1-2
+* Exploratory Data Analysis with Python for Beginner
 * Fundamental Data Visualization with Python
 
 Modul SQL yang tersedia pada repository ini:

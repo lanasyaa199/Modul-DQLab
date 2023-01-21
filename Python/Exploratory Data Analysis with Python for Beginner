@@ -1,8 +1,7 @@
-Exploratory Data Analysis with Python for Beginner
-
 ## Memanggil library di Python
 import numpy as np
 import pandas as pd
+
 
 ## Tugas Praktek
 Mengimport dataset marketplace ABC dari order.csv dan disimpan ke dalam dataframe bernama order_df.
@@ -11,21 +10,25 @@ Notes : untuk dataset diinput dari link berikut "https://storage.googleapis.com/
 import pandas as pd
 order_df = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/order.csv")
 
+
 ## Tugas Praktek
 Melihat struktur dari order_df dengan menggunakan fungsi shape!
 
 print(order_df.shape)
+
 
 ## Tugas Praktek
 Check contoh data dari dataframe limit 10 baris!
 
 print(order_df.head(10))
 
+
 ## Tugas Praktek
 # Quick summary  dari segi kuantitas, harga, freight value, dan weight
 print(order_df.describe())
 # Median dari total pembelian konsumen per transaksi kolom price
 print(order_df.loc[:, "price"].median())
+
 
 ## Tugas Praktek
 Buatkan price distribution dalam bentuk histogram price
@@ -34,11 +37,13 @@ Buatkan price distribution dalam bentuk histogram price
 order_df[["price"]].hist(figsize=(4, 5), bins=10, xlabelsize=8, ylabelsize=8)
 plt.show()  # Untuk menampilkan histogram plot
 
+
 ## Tugas Praktek
 # Standar variasi kolom product_weight_gram
 order_df.loc[:, "product_weight_gram"].std()
 # Varians kolom product_weight_gram
 order_df.loc[:, "product_weight_gram"].var()
+
 
 ## Tugas Praktek
 # Hitung quartile 1
@@ -49,20 +54,24 @@ Q3 = order_df[["product_weight_gram"]].quantile(0.75)
 IQR = Q3 - Q1
 print(IQR)
 
+
 ## Tugas Praktek
 # Ganti nama kolom freight_value menjadi shipping_cost
 order_df.rename(columns={"freight_value": "shipping_cost"}, inplace=True)
 print(order_df)
+
 
 ## Tugas Praktek
 # Hitung rata rata dari price per payment_type
 rata_rata = order_df["price"].groupby(order_df["payment_type"]).mean()
 print(rata_rata)
 
+
 ## Tugas Praktek
 # Hitung harga maksimum pembelian customer
 sort_harga = order_df.sort_values(by="price", ascending=False)
 print(sort_harga)
+
 
 ## Tugas Praktek
 1. Median price yang dibayar customer dari masing-masing metode pembayaran.

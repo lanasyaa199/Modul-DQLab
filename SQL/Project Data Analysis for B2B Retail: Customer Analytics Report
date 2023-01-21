@@ -1,0 +1,77 @@
+## Memahami Table
+SELECT * FROM orders_1 limit 5;
+
+SELECT * FROM orders_2 limit 5;
+
+SELECT * FROM customer limit 5;
+
+
+## Total Penjualan dan Revenue pada Quarter-1 (Jan, Feb, Mar) dan Quarter-2 (Apr,Mei,Jun)
+select sum(quantity) as total_penjualan,
+sum(quantity*priceeach) as 'revenue'
+from orders_1
+where status = 'Shipped';
+
+select sum(quantity) as total_penjualan,
+sum(quantity*priceeach) as 'revenue'
+from orders_2
+where status = 'Shipped';
+
+
+## Menghitung persentasi keseluruhan penjualan
+select 
+quarter,
+sum(quantity) as total_penjualan,
+sum(quantity*priceeach) as 'revenue'
+from (
+	select ordernumber, status, quantity, priceeach, "1" as quarter from orders_1
+	union all
+	select ordernumber, status, quantity, priceeach, "2" as quarter from orders_2)
+	as tabel_a
+where status = 'shipped'
+group by 1;
+
+
+## Apakah jumlah customers xyz.com semakin bertambah?
+select quarter, total_customers
+from
+(select quarter(createdate) as quarter,
+ count(distinct customerid) as total_customers
+from customer
+where date(createdate) between "2004-01-01" and "2004-06-30"
+group by 1) as tabel_b;
+
+
+## Seberapa banyak customers tersebut yang sudah melakukan transaksi?
+select 
+quarter(createdate) as quarter, 
+count(distinct customerid) as total_customers
+from customer
+where customerid in (
+select distinct customerid from orders_1
+union all
+select distinct customerid from orders_2)
+group by quarter;
+
+
+## Category produk apa saja yang paling banyak di-order oleh customers di Quarter-2?
+select
+left(productcode,3) as categoryid,
+count(distinct ordernumber) as total_order,
+sum(quantity) as total_penjualan
+from orders_2
+where status = 'Shipped'
+group by 1
+order by 2 desc;
+
+
+## Seberapa banyak customers yang tetap aktif bertransaksi setelah transaksi pertamanya?
+#Menghitung total unik customers yang transaksi di quarter_1
+SELECT COUNT(DISTINCT customerID) as total_customers FROM orders_1;
+#output = 25
+
+select "1" as quarter, (count(distinct customerid)*100)/25 as Q2
+from orders_1
+where customerid in (select distinct customerid from orders_2)
+and status = 'Shipped'
+group by 1;

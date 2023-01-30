@@ -10,6 +10,7 @@ Modul Python yang tersedia pada repository ini:
 * Data Manipulation with Pandas Part 1-2
 * Exploratory Data Analysis with Python for Beginner
 * Fundamental Data Visualization with Python
+* Project Simple ETL with Pandas
 
 Modul SQL yang tersedia pada repository ini:
 * Data Engineer Challenge with SQL

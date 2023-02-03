@@ -19,4 +19,5 @@ Modul SQL yang tersedia pada repository ini:
 * Project Data Analysis for B2B Retail: Customer Analytics Report
 * Project Data Analysis for Retail: Sales Performance Report
 
+You can also read Modul-DQLab Wiki : https://github.com/lanasyakina/Modul-DQLab.wiki.git
 For more information : https://dqlab.id/
